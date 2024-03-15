@@ -38,6 +38,7 @@ func main() {
 		}
 	})
 
+	log.Println("Listening on :7777")
 	err := http.ListenAndServe(":7777", nil)
 	log.Fatal(err)
 }

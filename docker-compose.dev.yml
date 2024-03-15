@@ -118,6 +118,21 @@ services:
     env_file:
       - ./.env
 
+  websockets:
+    build:
+      context: ./websockets
+      dockerfile: Dockerfile.dev
+    volumes:
+      - ./websockets:/app
+    restart: on-failure
+    depends_on:
+      - rabbitmq
+    environment:
+      - RABBITMQ_DEFAULT_USER=${RABBITMQ_DEFAULT_USER}
+      - RABBITMQ_DEFAULT_PASS=${RABBITMQ_DEFAULT_PASS}
+    ports:
+      - 7777:7777
+
   transcoder:
     <<: *transcoder-base
     profiles: ['', 'cpu']
