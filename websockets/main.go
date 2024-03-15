@@ -1,15 +1,17 @@
 package main
 
 import (
-	"context"
 	"log"
 	"net/http"
-	"time"
 
 	websocket "nhooyr.io/websocket"
 )
 
+const MAX_MESSAGE_QUEUE = 16
+
 func main() {
+	server := NewServer()
+
 	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
 		c, err := websocket.Accept(w, r, &websocket.AcceptOptions{
 			InsecureSkipVerify: true,
@@ -18,20 +20,23 @@ func main() {
 			log.Println(err)
 			return
 		}
-		defer c.Close(websocket.StatusInternalError, "Internal error")
+		defer c.CloseNow()
+
+		client := &Client{
+			messages: make(chan []byte, MAX_MESSAGE_QUEUE),
+		}
+		server.RegisterClient(client)
+		defer server.DeleteClient(client)
 
 		for {
-			ctx, cancel := context.WithTimeout(context.Background(), time.Minute)
-			defer cancel()
-
-			t, message, err := c.Read(ctx)
+			t, message, err := c.Read(r.Context())
 			if err != nil || t != websocket.MessageText {
 				break
 			}
 
 			log.Printf("Received %v", message)
 
-			err = c.Write(ctx, websocket.MessageText, message)
+			err = c.Write(r.Context(), websocket.MessageText, message)
 			if err != nil {
 				break
 			}
