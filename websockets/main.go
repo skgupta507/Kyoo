@@ -5,6 +5,7 @@ import (
 	"net/http"
 
 	websocket "nhooyr.io/websocket"
+	wsjson "nhooyr.io/websocket/wsjson"
 )
 
 const MAX_MESSAGE_QUEUE = 16
@@ -29,14 +30,32 @@ func main() {
 		defer server.DeleteClient(client)
 
 		for {
-			t, message, err := c.Read(r.Context())
-			if err != nil || t != websocket.MessageText {
+			var message Message
+			err := wsjson.Read(r.Context(), c, &message)
+			if err != nil {
+				log.Printf("err: %v", err)
 				break
 			}
 
-			log.Printf("Received %v", message)
+			ret, err := client.HandleMessage(message)
+			var resp Response
+			if err == nil {
+				if ret != nil {
+					resp = Response{
+						Ok:    true,
+						Value: ret,
+					}
+				} else {
+					resp = Response{Ok: true}
+				}
+			} else {
+				resp = Response{
+					Ok:    false,
+					Error: err.Error(),
+				}
+			}
 
-			err = c.Write(r.Context(), websocket.MessageText, message)
+			err = wsjson.Write(r.Context(), c, resp)
 			if err != nil {
 				break
 			}
