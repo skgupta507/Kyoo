@@ -23,12 +23,11 @@ func main() {
 		}
 		defer c.CloseNow()
 
-		client := &Client{
-			messages: make(chan []byte, MAX_MESSAGE_QUEUE),
-		}
+		client := NewClient()
 		server.RegisterClient(client)
 		defer server.DeleteClient(client)
 
+		go client.ListenChannels()
 		for {
 			var message Message
 			err := wsjson.Read(r.Context(), c, &message)
