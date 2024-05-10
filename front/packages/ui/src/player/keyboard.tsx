@@ -20,9 +20,9 @@
 
 import type { Subtitle } from "@kyoo/models";
 import { atom, useSetAtom } from "jotai";
+import { useRouter } from "@kyoo/primitives";
 import { useEffect } from "react";
 import { Platform } from "react-native";
-import { useRouter } from "solito/router";
 import {
 	durationAtom,
 	fullscreenAtom,

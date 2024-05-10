@@ -28,12 +28,11 @@ import {
 	WatchInfoP,
 	useFetch,
 } from "@kyoo/models";
-import { Head } from "@kyoo/primitives";
-import { useSetAtom } from "jotai";
-import { type ComponentProps, useEffect, useState } from "react";
-import { useTranslation } from "react-i18next";
+import { Head, useRouter } from "@kyoo/primitives";
+import { useState, useEffect, type ComponentProps } from "react";
 import { Platform, StyleSheet, View } from "react-native";
-import { useRouter } from "solito/router";
+import { useTranslation } from "react-i18next";
+import { useSetAtom } from "jotai";
 import { useYoshiki } from "yoshiki/native";
 import { episodeDisplayNumber } from "../details/episode";
 import { ErrorView } from "../errors";
@@ -159,14 +158,8 @@ export const Player = ({
 					startTime={startTime}
 					onEnd={() => {
 						if (!data) return;
-						if (data.type === "movie")
-							router.replace(`/movie/${data.slug}`, undefined, {
-								experimental: { nativeBehavior: "stack-replace", isNestedNavigator: true },
-							});
-						else
-							router.replace(next ?? `/show/${data.show!.slug}`, undefined, {
-								experimental: { nativeBehavior: "stack-replace", isNestedNavigator: true },
-							});
+						if (data.type === "movie") router.replace(`/movie/${data.slug}`, true);
+						else router.replace(next ?? `/show/${data.show!.slug}`, true);
 					}}
 					{...css(StyleSheet.absoluteFillObject)}
 				/>

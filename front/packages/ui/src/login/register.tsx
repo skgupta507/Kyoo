@@ -18,13 +18,11 @@
  * along with Kyoo. If not, see <https://www.gnu.org/licenses/>.
  */
 
-import { type QueryPage, login } from "@kyoo/models";
-import { A, Button, H1, Input, P, ts } from "@kyoo/primitives";
+import { login, type QueryPage } from "@kyoo/models";
+import { Button, P, Input, ts, H1, A, useRouter } from "@kyoo/primitives";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Trans } from "react-i18next";
-import { Platform } from "react-native";
-import { useRouter } from "solito/router";
 import { percent, px, useYoshiki } from "yoshiki/native";
 import { DefaultLayout } from "../layout";
 import { FormPage } from "./form";
@@ -43,10 +41,7 @@ export const RegisterPage: QueryPage<{ apiUrl?: string }> = ({ apiUrl }) => {
 	const { css } = useYoshiki();
 
 	useEffect(() => {
-		if (!apiUrl && Platform.OS !== "web")
-			router.replace("/server-url", undefined, {
-				experimental: { nativeBehavior: "stack-replace", isNestedNavigator: false },
-			});
+		if (!apiUrl && Platform.OS !== "web") router.replace("/server-url", false);
 	}, [apiUrl, router]);
 
 	return (
@@ -84,9 +79,7 @@ export const RegisterPage: QueryPage<{ apiUrl?: string }> = ({ apiUrl }) => {
 					const { error } = await login("register", { email, username, password, apiUrl });
 					setError(error);
 					if (error) return;
-					router.replace("/", undefined, {
-						experimental: { nativeBehavior: "stack-replace", isNestedNavigator: false },
-					});
+					router.replace("/", false);
 				}}
 				{...css({
 					m: ts(1),

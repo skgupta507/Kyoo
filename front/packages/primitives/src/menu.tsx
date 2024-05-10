@@ -39,6 +39,7 @@ import { useRouter } from "solito/router";
 import { percent, px, sm, useYoshiki, vh, xl } from "yoshiki/native";
 import { Icon, IconButton } from "./icons";
 import { PressableFeedback } from "./links";
+import { useRouter } from "./navigation/router";
 import { P } from "./text";
 import { ContrastArea, SwitchVariant } from "./themes";
 import { ts } from "./utils";

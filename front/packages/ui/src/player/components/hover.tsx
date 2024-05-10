@@ -18,7 +18,6 @@
  * along with Kyoo. If not, see <https://www.gnu.org/licenses/>.
  */
 
-import type { Audio, Chapter, KyooImage, Subtitle } from "@kyoo/models";
 import {
 	CircularProgress,
 	ContrastArea,
@@ -35,15 +34,16 @@ import {
 	tooltip,
 	ts,
 	useIsTouch,
+	useRouter,
 } from "@kyoo/primitives";
-import ArrowBack from "@material-symbols/svg-400/rounded/arrow_back-fill.svg";
-import { useAtom, useAtomValue, useSetAtom } from "jotai";
-import { atom } from "jotai";
-import { type ReactNode, useCallback, useEffect, useRef, useState } from "react";
-import { useTranslation } from "react-i18next";
+import type { Chapter, KyooImage, Subtitle, Audio } from "@kyoo/models";
+import { useAtomValue, useSetAtom, useAtom } from "jotai";
 import { type ImageStyle, Platform, Pressable, View, type ViewProps } from "react-native";
-import { useRouter } from "solito/router";
+import { useTranslation } from "react-i18next";
 import { percent, rem, useYoshiki } from "yoshiki/native";
+import ArrowBack from "@material-symbols/svg-400/rounded/arrow_back-fill.svg";
+import { type ReactNode, useCallback, useEffect, useRef, useState } from "react";
+import { atom } from "jotai";
 import {
 	bufferedAtom,
 	durationAtom,

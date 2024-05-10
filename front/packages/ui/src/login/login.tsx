@@ -44,10 +44,7 @@ export const LoginPage: QueryPage<{ apiUrl?: string; error?: string }> = ({
 	const { css } = useYoshiki();
 
 	useEffect(() => {
-		if (!apiUrl && Platform.OS !== "web")
-			router.replace("/server-url", undefined, {
-				experimental: { nativeBehavior: "stack-replace", isNestedNavigator: false },
-			});
+		if (!apiUrl && Platform.OS !== "web") router.replace("/server-url", false);
 	}, [apiUrl, router]);
 
 	return (
@@ -73,9 +70,7 @@ export const LoginPage: QueryPage<{ apiUrl?: string; error?: string }> = ({
 					});
 					setError(error);
 					if (error) return;
-					router.replace("/", undefined, {
-						experimental: { nativeBehavior: "stack-replace", isNestedNavigator: false },
-					});
+					router.replace("/", false);
 				}}
 				{...css({
 					m: ts(1),

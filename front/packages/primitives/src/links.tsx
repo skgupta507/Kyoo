@@ -18,19 +18,10 @@
  * along with Kyoo. If not, see <https://www.gnu.org/licenses/>.
  */
 
-import type { UrlObject } from "node:url";
-import { type ReactNode, forwardRef } from "react";
-import {
-	Linking,
-	Platform,
-	Pressable,
-	type PressableProps,
-	type TextProps,
-	type View,
-} from "react-native";
-import { TextLink, useLink } from "solito/link";
-import { parseNextPath } from "solito/router";
+import { forwardRef, type ReactNode } from "react";
+import { Platform, Pressable, type TextProps, type View, type PressableProps } from "react-native";
 import { useTheme, useYoshiki } from "yoshiki/native";
+import type { UrlObject } from "node:url";
 import { alpha } from "./themes";
 
 export const A = ({
@@ -122,9 +113,7 @@ export const Link = ({
 			{...props}
 			onPress={(e?: any) => {
 				props?.onPress?.(e);
-				if (e?.defaultPrevented) return;
-				if (Platform.OS !== "web" && href?.includes("://")) Linking.openURL(href);
-				else linkProps.onPress(e);
+				linkProps.onPress(e);
 			}}
 		>
 			{children}

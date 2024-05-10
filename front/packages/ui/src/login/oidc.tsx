@@ -26,12 +26,11 @@ import {
 	oidcLogin,
 	useFetch,
 } from "@kyoo/models";
-import { Button, HR, Link, P, Skeleton, ts } from "@kyoo/primitives";
-import { useEffect, useRef } from "react";
-import { useTranslation } from "react-i18next";
-import { ImageBackground, View } from "react-native";
-import { useRouter } from "solito/router";
+import { useRouter, Button, HR, Link, P, Skeleton, ts } from "@kyoo/primitives";
+import { View, ImageBackground } from "react-native";
 import { percent, rem, useYoshiki } from "yoshiki/native";
+import { useTranslation } from "react-i18next";
+import { useEffect, useRef } from "react";
 import { ErrorView } from "../errors";
 
 export const OidcLogin = ({ apiUrl }: { apiUrl?: string }) => {
@@ -105,18 +104,12 @@ export const OidcCallbackPage: QueryPage<{
 		hasRun.current = true;
 
 		function onError(error: string) {
-			router.replace({ pathname: "/login", query: { error, apiUrl } }, undefined, {
-				experimental: { nativeBehavior: "stack-replace", isNestedNavigator: false },
-			});
+			router.replace({ pathname: "/login", query: { error, apiUrl } }, false);
 		}
 		async function run() {
 			const { error: loginError } = await oidcLogin(provider, code, apiUrl);
 			if (loginError) onError(loginError);
-			else {
-				router.replace("/", undefined, {
-					experimental: { nativeBehavior: "stack-replace", isNestedNavigator: false },
-				});
-			}
+			else router.replace("/", false);
 		}
 
 		if (error) onError(error);
