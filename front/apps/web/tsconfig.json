@@ -14,11 +14,12 @@
 		"isolatedModules": true,
 		"jsx": "preserve",
 		"incremental": true,
+		"types": ["vite/client"],
 		"baseUrl": ".",
 		"paths": {
 			"~/*": ["src/*"]
 		}
 	},
-	"include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+	"include": ["**/*.ts", "**/*.tsx"],
 	"exclude": ["node_modules"]
 }
