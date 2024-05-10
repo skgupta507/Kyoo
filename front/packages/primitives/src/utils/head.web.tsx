@@ -18,7 +18,7 @@
  * along with Kyoo. If not, see <https://www.gnu.org/licenses/>.
  */
 
-import NextHead from "next/head";
+
 
 export const Head = ({
 	title,
@@ -29,11 +29,13 @@ export const Head = ({
 	description?: string | null;
 	image?: string | null;
 }) => {
-	return (
-		<NextHead>
-			{title && <title>{`${title} - Kyoo`}</title>}
-			{description && <meta name="description" content={description} />}
-			{image && <meta property="og:image" content={image} />}
-		</NextHead>
-	);
+	return <> </>
+	// TODO: implement this
+	// return (
+	// 	<NextHead>
+	// 		{title && <title>{`${title} - Kyoo`}</title>}
+	// 		{description && <meta name="description" content={description} />}
+	// 		{image && <meta property="og:image" content={image} />}
+	// 	</NextHead>
+	// );
 };

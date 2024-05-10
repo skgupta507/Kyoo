@@ -7770,6 +7770,20 @@ __metadata:
   languageName: node
   linkType: hard
 
+"flow-remove-types@npm:^2.233.0":
+  version: 2.236.0
+  resolution: "flow-remove-types@npm:2.236.0"
+  dependencies:
+    hermes-parser: 0.21.0
+    pirates: ^3.0.2
+    vlq: ^0.2.1
+  bin:
+    flow-node: flow-node
+    flow-remove-types: flow-remove-types
+  checksum: d1012205b8effde9483a6fddf154c9b36c42ba9219d6643b486b7fcf10ddc57d05f2a821478b5e12fc82786638e3527d28127321b0d54639acf42235bd1c3acb
+  languageName: node
+  linkType: hard
+
 "fontfaceobserver@npm:^2.1.0":
   version: 2.3.0
   resolution: "fontfaceobserver@npm:2.3.0"
@@ -8189,6 +8203,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"hermes-estree@npm:0.21.0":
+  version: 0.21.0
+  resolution: "hermes-estree@npm:0.21.0"
+  checksum: b1654b8de21a102c36ef4a5a80f9956b04fc6e26fb16edb09ccb3ca4e2fbc3b794daaadb1696891e2b6192d4f2a581a1c5d1bf0c977a712ec6540505326d208c
+  languageName: node
+  linkType: hard
+
 "hermes-parser@npm:0.15.0":
   version: 0.15.0
   resolution: "hermes-parser@npm:0.15.0"
@@ -8204,6 +8225,15 @@ __metadata:
   dependencies:
     hermes-estree: 0.18.2
   checksum: d628f207e8951ee8bdf5b3c798ea9e18e2f4e49f9a5aaed639868207b7163eafb3a55b999c6ed8b4f0c4e39b474c2e1bd1bcb69303f095cab56e1711368bcbdf
+  languageName: node
+  linkType: hard
+
+"hermes-parser@npm:0.21.0":
+  version: 0.21.0
+  resolution: "hermes-parser@npm:0.21.0"
+  dependencies:
+    hermes-estree: 0.21.0
+  checksum: 2e2ae7ebd446dc765d353323e1ff073d7fc96fcd90a8396dbfc0d13299d4c81293ccc72778bb4c6f1a6dc3751b2b778480a238f03419ccd9a8f364e5a58235ed
   languageName: node
   linkType: hard
 
@@ -10150,6 +10180,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"node-modules-regexp@npm:^1.0.0":
+  version: 1.0.0
+  resolution: "node-modules-regexp@npm:1.0.0"
+  checksum: 99541903536c5ce552786f0fca7f06b88df595e62e423c21fa86a1674ee2363dad1f7482d1bec20b4bd9fa5f262f88e6e5cb788fc56411113f2fe2e97783a3a7
+  languageName: node
+  linkType: hard
+
 "node-releases@npm:^2.0.14":
   version: 2.0.14
   resolution: "node-releases@npm:2.0.14"
@@ -10602,6 +10639,15 @@ __metadata:
   version: 4.0.1
   resolution: "pify@npm:4.0.1"
   checksum: 9c4e34278cb09987685fa5ef81499c82546c033713518f6441778fbec623fc708777fe8ac633097c72d88470d5963094076c7305cafc7ad340aae27cfacd856b
+  languageName: node
+  linkType: hard
+
+"pirates@npm:^3.0.2":
+  version: 3.0.2
+  resolution: "pirates@npm:3.0.2"
+  dependencies:
+    node-modules-regexp: ^1.0.0
+  checksum: 73bc9d8a1859c0854740541d1afd0c87b62d3d63fdaec38c3ac7f57d9d70b9f6f325f5ffcac11b8935c8d9249ead41c9c59632ed098b225a96219274ca6248c8
   languageName: node
   linkType: hard
 
@@ -13039,6 +13085,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"vite-plugin-react-native-web@npm:^1.0.2":
+  version: 1.0.2
+  resolution: "vite-plugin-react-native-web@npm:1.0.2"
+  dependencies:
+    flow-remove-types: ^2.233.0
+  checksum: 8e97b65152c1a1fdc9e5453fb3b24509ce4d194c6f9aab4f7abfaef283ed46eb3303e34c416cb628e219555739ccd20f7115419c17fa2760ff7f80eeaede23e2
+  languageName: node
+  linkType: hard
+
 "vite@npm:^5.2.11":
   version: 5.2.11
   resolution: "vite@npm:5.2.11"
@@ -13076,6 +13131,13 @@ __metadata:
   bin:
     vite: bin/vite.js
   checksum: 3f9f976cc6ada93aca56abcc683a140e807725b351abc241a1ec0763ec561a4bf5760e1ad94de4e59505904ddaa88727de66af02f61ecf540c7720045de55d0a
+  languageName: node
+  linkType: hard
+
+"vlq@npm:^0.2.1":
+  version: 0.2.3
+  resolution: "vlq@npm:0.2.3"
+  checksum: 2231d8caeb5b2c1a438677ab029e9a94aa6fb61ab05819c72691b792aea0456dab29576aff5ae29309ee45bad0a309e832dc45173119bca1393f3b87709d8f8d
   languageName: node
   linkType: hard
 
@@ -13182,6 +13244,7 @@ __metadata:
     vike-react: ^0.4.8
     vike-react-query: ^0.0.5
     vite: ^5.2.11
+    vite-plugin-react-native-web: ^1.0.2
     yoshiki: 1.2.14
     zod: ^3.22.4
   languageName: unknown

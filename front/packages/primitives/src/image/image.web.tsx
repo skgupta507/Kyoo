@@ -18,14 +18,13 @@
  * along with Kyoo. If not, see <https://www.gnu.org/licenses/>.
  */
 
-import NextImage from "next/image";
 import { useState } from "react";
 import { type ImageStyle, View, type ViewStyle } from "react-native";
 import { useYoshiki } from "yoshiki/native";
-import { imageBorderRadius } from "../constants";
-import { Skeleton } from "../skeleton";
-import type { ImageLayout, Props } from "./base-image";
+import type { Props, ImageLayout } from "./base-image";
 import { BlurhashContainer } from "./blurhash.web";
+import { Skeleton } from "../skeleton";
+import { imageBorderRadius } from "../constants";
 
 export const Image = ({
 	src,
@@ -54,21 +53,17 @@ export const Image = ({
 
 	return (
 		<BlurhashContainer blurhash={src.blurhash} {...css([layout, border], props)}>
-			<NextImage
+			<img
 				src={src[quality ?? "high"]}
-				priority={quality === "high"}
+				// fetchpriority={quality === "high" ? "high" : "low"}
 				alt={alt!}
-				fill={true}
 				style={{
 					objectFit: "cover",
 					opacity: state === "loading" ? 0 : 1,
 					transition: "opacity .2s ease-out",
 				}}
-				// Don't use next's server to reprocess images, they are already optimized by kyoo.
-				unoptimized={true}
 				onLoad={() => setState("finished")}
 				onError={() => setState("errored")}
-				suppressHydrationWarning
 			/>
 		</BlurhashContainer>
 	);

@@ -10,6 +10,7 @@
 		"build": "vite build",
 		"start": "vite preview"
 	},
+	"type": "module",
 	"dependencies": {
 		"@gorhom/portal": "^1.0.14",
 		"@kyoo/models": "workspace:^",
@@ -54,6 +55,7 @@
 		"@types/react": "18.2.48",
 		"@types/react-dom": "18.2.18",
 		"react-native": "0.73.2",
-		"typescript": "^5.3.3"
+		"typescript": "^5.3.3",
+		"vite-plugin-react-native-web": "^1.0.2"
 	}
 }

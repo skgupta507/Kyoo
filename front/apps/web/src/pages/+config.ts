@@ -1,5 +1,5 @@
 import type { Config } from "vike/types";
-import logoUrl from "~/public/icon.svg";
+import logoUrl from "../../public/icon.svg";
 import vikeReact from "vike-react/config";
 import vikeReactQuery from "vike-react-query/config";
 

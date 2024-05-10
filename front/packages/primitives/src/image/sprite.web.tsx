@@ -18,8 +18,6 @@
  * along with Kyoo. If not, see <https://www.gnu.org/licenses/>.
  */
 
-import NextImage from "next/image";
-
 export const Sprite = ({
 	src,
 	alt,
@@ -37,12 +35,9 @@ export const Sprite = ({
 	y: number;
 }) => {
 	return (
-		<NextImage
+		<img
 			src={src}
-			priority={false}
 			alt={alt!}
-			// Don't use next's server to reprocess images, they are already optimized by kyoo.
-			unoptimized={true}
 			style={{
 				objectFit: "none",
 				objectPosition: `${-x}px ${-y}px`,

@@ -20,20 +20,14 @@
 
 import Dot from "@material-symbols/svg-400/rounded/fiber_manual_record-fill.svg";
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
-import Link from "next/link";
-import {
-	type ComponentProps,
-	type ComponentType,
-	type ReactElement,
-	type ReactNode,
-	forwardRef,
-} from "react";
+import { type ComponentProps, type ComponentType, forwardRef, type ReactElement, type ReactNode } from "react";
 import type { PressableProps } from "react-native";
 import type { SvgProps } from "react-native-svg";
 import { useYoshiki as useNativeYoshiki } from "yoshiki/native";
 import { useYoshiki } from "yoshiki/web";
 import { Icon } from "./icons";
 import { P } from "./text";
+import { Link } from "./links";
 import { ContrastArea, SwitchVariant } from "./themes";
 import { focusReset, ts } from "./utils";
 
