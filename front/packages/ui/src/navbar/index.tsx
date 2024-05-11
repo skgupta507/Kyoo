@@ -29,6 +29,7 @@ import {
 	Link,
 	Menu,
 	PressableFeedback,
+	useRouter,
 	tooltip,
 	ts,
 } from "@kyoo/primitives";
@@ -40,11 +41,10 @@ import Search from "@material-symbols/svg-400/rounded/search-fill.svg";
 import Settings from "@material-symbols/svg-400/rounded/settings.svg";
 import { forwardRef, useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { Platform, type TextInput, View, type ViewProps } from "react-native";
-import { useRouter } from "solito/router";
 import { type Stylable, useYoshiki } from "yoshiki/native";
 import { AdminPage } from "../admin";
 import { KyooLongLogo } from "./icon";
+import { Platform, TextInput, View, ViewProps } from "react-native";
 
 export const NavbarTitle = (props: Stylable & { onLayout?: ViewProps["onLayout"] }) => {
 	const { t } = useTranslation();
@@ -66,7 +66,7 @@ const SearchBar = forwardRef<TextInput, Stylable>(function SearchBar(props, ref)
 	useEffect(() => {
 		if (Platform.OS !== "web" || !hasChanged.current) return;
 		const action = window.location.pathname.startsWith("/search") ? replace : push;
-		if (query) action(`/search?q=${encodeURI(query)}`, undefined, { shallow: true });
+		if (query) action(`/search?q=${encodeURI(query)}`);
 		else back();
 	}, [query, push, replace, back]);
 

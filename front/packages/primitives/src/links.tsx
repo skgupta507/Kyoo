@@ -23,6 +23,8 @@ import { Platform, Pressable, type TextProps, type View, type PressableProps } f
 import { useTheme, useYoshiki } from "yoshiki/native";
 import type { UrlObject } from "node:url";
 import { alpha } from "./themes";
+import { P } from "./text";
+import { useLink } from "./navigation/link";
 
 export const A = ({
 	href,
@@ -32,43 +34,16 @@ export const A = ({
 	...props
 }: TextProps & {
 	href?: string | UrlObject | null;
-	target?: string;
+	target?: "_blank";
 	replace?: boolean;
 	children: ReactNode;
 }) => {
-	const { css, theme } = useYoshiki();
+	const link = useLink(href ?? "#", { target, replace });
 
 	return (
-		<TextLink
-			href={href ?? ""}
-			target={target}
-			replace={replace as any}
-			experimental={
-				replace
-					? {
-							nativeBehavior: "stack-replace",
-							isNestedNavigator: true,
-						}
-					: undefined
-			}
-			textProps={css(
-				[
-					{
-						fontFamily: theme.font.normal,
-						color: theme.link,
-					},
-					{
-						userSelect: "text",
-					} as any,
-				],
-				{
-					hrefAttrs: { target },
-					...props,
-				},
-			)}
-		>
+		<P {...link} {...props}>
 			{children}
-		</TextLink>
+		</P>
 	);
 };
 
@@ -93,20 +68,17 @@ export const PressableFeedback = forwardRef<View, PressableProps>(function Feedb
 });
 
 export const Link = ({
-	href: link,
+	href,
 	replace,
 	target,
 	children,
 	...props
-}: { href?: string | UrlObject | null; target?: string; replace?: boolean } & PressableProps) => {
-	const href = link && typeof link === "object" ? parseNextPath(link) : link;
-	const linkProps = useLink({
-		href: href ?? "#",
+}: { href?: string | UrlObject | null; target?: "_blank"; replace?: boolean } & PressableProps) => {
+	const linkProps = useLink(href ?? "#", {
+		target,
 		replace,
-		experimental: { nativeBehavior: "stack-replace", isNestedNavigator: true },
+		isNested: true,
 	});
-	// @ts-ignore Missing hrefAttrs type definition.
-	linkProps.hrefAttrs = { ...linkProps.hrefAttrs, target };
 	return (
 		<PressableFeedback
 			{...linkProps}

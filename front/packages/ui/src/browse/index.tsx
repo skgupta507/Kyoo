@@ -25,17 +25,15 @@ import {
 	type QueryPage,
 	getDisplayDate,
 } from "@kyoo/models";
+import { useParam } from "@kyoo/primitives";
 import { type ComponentProps, useState } from "react";
-import { createParam } from "solito";
+import { DefaultLayout } from "../layout";
 import type { WithLoading } from "../fetch";
 import { InfiniteFetch } from "../fetch-infinite";
-import { DefaultLayout } from "../layout";
 import { ItemGrid } from "./grid";
 import { BrowseSettings } from "./header";
 import { ItemList } from "./list";
 import { Layout, SortBy, SortOrd } from "./types";
-
-const { useParam } = createParam<{ sortBy?: string }>();
 
 export const itemMap = (
 	item: WithLoading<LibraryItem>,

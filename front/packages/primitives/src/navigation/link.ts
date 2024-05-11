@@ -15,8 +15,9 @@ export const useLink = (
 		href,
 		onPress: (e) => {
 			if (e?.defaultPrevented) return;
-			if (Platform.OS !== "web" && href.includes("://")) {
-				Linking.openURL(href);
+			const abs = href.includes("://");
+			if (Platform.OS !== "web" && (abs || opts.target)) {
+				Linking.openURL(abs ? href : `https://${href}`);
 				return;
 			}
 
@@ -31,7 +32,9 @@ export const useLink = (
 					we.shiftKey ||
 					// ignore everything but left clicks
 					we.button !== null ||
-					we.button !== 0
+					we.button !== 0 ||
+					// let the browser handle target blank
+					opts.target
 				)
 					return;
 			}

@@ -21,11 +21,8 @@
 import { SearchPage } from "@kyoo/ui";
 import { Stack, useLocalSearchParams } from "expo-router";
 import { useTranslation } from "react-i18next";
-import { createParam } from "solito";
-import { useRouter } from "@kyoo/primitives";
+import { useRouter, useParam } from "@kyoo/primitives";
 import { useTheme } from "yoshiki/native";
-
-const { useParam } = createParam<{ q?: string }>();
 
 const Search = () => {
 	const theme = useTheme();
@@ -52,7 +49,7 @@ const Search = () => {
 					},
 				}}
 			/>
-			<SearchPage {...routeParams} />
+			<SearchPage q={query} />
 		</>
 	);
 };

@@ -41,7 +41,7 @@ export const RegisterPage: QueryPage<{ apiUrl?: string }> = ({ apiUrl }) => {
 	const { css } = useYoshiki();
 
 	useEffect(() => {
-		if (!apiUrl && Platform.OS !== "web") router.replace("/server-url", false);
+		if (!apiUrl && Platform.OS !== "web") router.replace("/server-url", { isNested: false });
 	}, [apiUrl, router]);
 
 	return (
@@ -79,7 +79,7 @@ export const RegisterPage: QueryPage<{ apiUrl?: string }> = ({ apiUrl }) => {
 					const { error } = await login("register", { email, username, password, apiUrl });
 					setError(error);
 					if (error) return;
-					router.replace("/", false);
+					router.replace("/", { isNested: false });
 				}}
 				{...css({
 					m: ts(1),

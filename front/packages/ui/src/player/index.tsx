@@ -158,8 +158,8 @@ export const Player = ({
 					startTime={startTime}
 					onEnd={() => {
 						if (!data) return;
-						if (data.type === "movie") router.replace(`/movie/${data.slug}`, true);
-						else router.replace(next ?? `/show/${data.show!.slug}`, true);
+						if (data.type === "movie") router.replace(`/movie/${data.slug}`, { isNested: true });
+						else router.replace(next ?? `/show/${data.show!.slug}`, { isNested: true });
 					}}
 					{...css(StyleSheet.absoluteFillObject)}
 				/>

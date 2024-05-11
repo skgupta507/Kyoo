@@ -22,6 +22,7 @@ import "~/polyfill";
 // 		typeof layoutInfo === "function" ? { Layout: layoutInfo, props: {} } : layoutInfo;
 // 	return <Layout page={<Component {...props} />} randomItems={[]} {...layoutProps} />;
 // };
+
 const GlobalCssTheme = () => {
 	const theme = useTheme();
 	return (
@@ -76,35 +77,36 @@ const GlobalCssTheme = () => {
 };
 export default function Layout({ children }: { children: ReactNode }) {
 	// TODO: theme ssr
-	const userTheme = useUserTheme(undefined);
+	// const userTheme = useUserTheme(undefined);
 
 	useMobileHover();
 
 	// TODO: ssr account/error
 	return (
 		<>
-			<AccountProvider ssrAccount={undefined} ssrError={undefined}>
-				<ThemeSelector theme={userTheme} font={{ normal: "inherit" }}>
-					<PortalProvider>
-						<SnackbarProvider>
+			{/* <AccountProvider ssrAccount={undefined} ssrError={undefined}> */}
+			{/* 	<ThemeSelector theme={userTheme} font={{ normal: "inherit" }}> */}
+			{/* 		<PortalProvider> */}
+			{/* 			<SnackbarProvider> */}
 							<GlobalCssTheme />
 							{children}
-							{/* <ConnectionErrorVerifier skipErrors={(Component as QueryPage).isPublic}>
-								<WithLayout
-									Component={children}
-									randomItems={
-										randomItems[Component.displayName!] ??
-										arrayShuffle((Component as QueryPage).randomItems ?? [])
-									}
-									{...props}
-								/>
-							</ConnectionErrorVerifier> */}
-							<Tooltip id="tooltip" positionStrategy={"fixed"} />
-						</SnackbarProvider>
-					</PortalProvider>
-				</ThemeSelector>
-			</AccountProvider>
-			<ReactQueryDevtools initialIsOpen={false} />
+			{/* 				{/* <ConnectionErrorVerifier skipErrors={(Component as QueryPage).isPublic}> */}
+			{/* 					<WithLayout */}
+			{/* 						Component={children} */}
+			{/* 						randomItems={ */}
+			{/* 							randomItems[Component.displayName!] ?? */}
+			{/* 							arrayShuffle((Component as QueryPage).randomItems ?? []) */}
+			{/* 						} */}
+			{/* 						{...props} */}
+			{/* 					/> */}
+			{/* 				</ConnectionErrorVerifier> */}
+			{/* 				<Tooltip id="tooltip" positionStrategy={"fixed"} /> */}
+			{/* 			</SnackbarProvider> */}
+			{/* 		</PortalProvider> */}
+			{/* 	</ThemeSelector> */}
+			{/* </AccountProvider> */}
+			{/* <ReactQueryDevtools initialIsOpen={false} /> */}
 		</>
 	);
 }
+

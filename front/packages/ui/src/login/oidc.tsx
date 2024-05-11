@@ -104,12 +104,12 @@ export const OidcCallbackPage: QueryPage<{
 		hasRun.current = true;
 
 		function onError(error: string) {
-			router.replace({ pathname: "/login", query: { error, apiUrl } }, false);
+			router.replace({ pathname: "/login", query: { error, apiUrl } }, { isNested: false });
 		}
 		async function run() {
 			const { error: loginError } = await oidcLogin(provider, code, apiUrl);
 			if (loginError) onError(loginError);
-			else router.replace("/", false);
+			else router.replace("/", { isNested: false });
 		}
 
 		if (error) onError(error);

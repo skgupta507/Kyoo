@@ -13,5 +13,15 @@ export default {
 			"~": path.resolve(__dirname, "./src"),
 		},
 	},
+	build: {
+		commonjsOptions: {
+			transformMixedEsModules: true,
+		},
+	},
+	optimizeDeps: {
+		esbuildOptions: {
+			mainFields: ["module", "main"],
+		},
+	},
 	plugins: [react(), vike(), reactNativeWeb()],
 } satisfies UserConfig;

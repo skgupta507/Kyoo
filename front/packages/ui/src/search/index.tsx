@@ -19,19 +19,16 @@
  */
 
 import { type LibraryItem, LibraryItemP, type QueryIdentifier, type QueryPage } from "@kyoo/models";
-import { usePageStyle } from "@kyoo/primitives";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import { createParam } from "solito";
+import { DefaultLayout } from "../layout";
+import { InfiniteFetch } from "../fetch-infinite";
 import { itemMap } from "../browse";
 import { ItemGrid } from "../browse/grid";
 import { BrowseSettings } from "../browse/header";
 import { ItemList } from "../browse/list";
+import { useParam, usePageStyle } from "@kyoo/primitives";
 import { Layout, SearchSort, SortOrd } from "../browse/types";
-import { InfiniteFetch } from "../fetch-infinite";
-import { DefaultLayout } from "../layout";
-
-const { useParam } = createParam<{ sortBy?: string }>();
 
 const query = (
 	query?: string,
