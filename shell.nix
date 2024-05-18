@@ -37,6 +37,7 @@ in
       postgresql_15
       pgformatter
       biome
+      bun
     ];
 
     DOTNET_ROOT = "${dotnet}";
