@@ -37,6 +37,7 @@ in
       pgformatter
       biome
       go-migrate
+      sqlc
     ];
 
     DOTNET_ROOT = "${dotnet}";
