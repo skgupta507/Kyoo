@@ -38,6 +38,7 @@ in
       biome
       go-migrate
       sqlc
+      go-swag
     ];
 
     DOTNET_ROOT = "${dotnet}";
